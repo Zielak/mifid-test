@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html id="ng-app" ng-app="testApp">
+<head>
+  <title>Test survey</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8">
+</head>
+<body>
+
+  <div class="mifid-test" ng-controller="testCtrl">
+
+    <form method="post" action="#">
+
+      <h1>Test survey</h1>
+      <p>Cras a nunc nec velit blandit mollis vitae id justo. Quisque ultrices ipsum ut massa lacinia laoreet. Donec ut ante convallis, sagittis tellus a, auctor lacus. Curabitur venenatis magna quis diam aliquam pulvinar. Donec ut nibh velit.</p>
+      <p>It'll only yese 2 minutes.</p>
+
+      <div class="question question-1">
+
+        <!-- question 1 -->
+        <h2><i>1</i> Are you using Sublime Text do develop your applications?</h2>
+        <p><label for="question1a"><input type="radio" name="question1[]" id="question1a" value="yes" ng-model="ans.question1"> Yes</label></p>
+        <p><label for="question1b"><input type="radio" name="question1[]" id="question1b" value="no" ng-model="ans.question1"> No</label></p>
+        <p><label for="question1c"><input type="radio" name="question1[]" id="question1c" value="wat" ng-model="ans.question1"> I can't</label></p>
+
+        <div class="sub-questions">
+
+          <!-- question 1 how good is it -->
+          <div ng-show="ans.question1 == 'yes'" class="sub-question animate">
+            <h2>How good is it?</h2>
+            <table>
+              <tr>
+                <td ng-repeat="num in [1,2,3,4,5,6,7,8,9,10]">
+                  <label for="question1yes{{num}}">
+                    {{num}}&nbsp;<input type="radio" name="question1yes[]" id="question1yes{{num}}" ng-model="ans.question1yes" ng-value="num">
+                  </label>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- question 1 - dlaczego -->
+          <div ng-show="ans.question1 == 'no'" class="sub-question animate">
+            <h2>Why not?</h2>
+            <textarea name="question1no" id="question1no" rows="3" ng-model="ans.question1no"></textarea>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- question 2 -->
+      <div class="question question-2" ng-class="dis.question2">
+        <h2><i>2</i> Which operating system are you using?</h2>
+        <p ng-repeat="os in questions.question2">
+          <label for="question2{{$index}}">
+            <input ng-model="ans.question2[$index]" ng-disabled="ans.question1=='wat'" type="checkbox" name="question2{{$index}}" id="question2{{$index}}" value="{{os}}"> {{os}}
+          </label>
+        </p>
+        <input name="question2inne" type="text" ng-disabled="ans.question2[questions.question2.length-1] !== true" ng-model="ans.question2inne">
+      </div>
+
+
+      <!-- question 3 -->
+      <div class="question question-3">
+      <h2><i>3</i> Are you familiar with Package Control?</h2>
+
+        <p><label for="question3a"><input type="radio" name="question3[]" id="question3a" value="yes" ng-model="ans.question3"> Yes</label></p>
+        <p><label for="question3b"><input type="radio" name="question3[]" id="question3b" value="no" ng-model="ans.question3"> Nope</label></p>
+
+      </div>
+
+
+
+      <!-- question 4 -->
+      <div class="question question-4">
+        <h2><i>4</i> Would you be willing to participate in online webinar all about Sublime Text?</h2>
+
+        <p><label for="question4a"><input type="radio" name="question4[]" id="question4a" value="yes" ng-model="ans.question4"> YES!</label></p>
+        <p><label for="question4b"><input type="radio" name="question4[]" id="question4b" value="no" ng-model="ans.question4"> nah</label></p>
+
+        <div class="sub-questions">
+
+          <!-- question 4 - dlaczego -->
+          <div ng-show="ans.question4 == 'no'" class="sub-question animate">
+            <h2>Why not?</h2>
+            <textarea name="question4no" id="question4no" rows="3" ng-model="ans.question4no"></textarea>
+          </div>
+
+          <!-- question 4 - szkoleno -->
+          <div ng-show="ans.question4 == 'yes'" class="sub-question animate">
+            <p><a href="#" target="_blank" class="cta cta-small">Sign up today!</a></p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="question question-5">
+
+        <p ng-show="!allAnswered()" class="animate"><strong>Answer all questions please.</strong></p>
+        <p><input type="submit" class="cta" value="Submit &raquo;" ng-disabled="!allAnswered()"></p>
+      </div>
+
+    </form>
+  </div>
+
+
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/angular-animate.min.js"></script>
+
+  <script type="text/javascript" src="js/mifid-test.min.js"></script>
+
+</body>
+</html>

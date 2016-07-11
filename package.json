@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/Zielak/mifid-test/issues"
   },
-  "homepage": "https://github.com/Zielak/mifid-test#readme"
+  "homepage": "https://github.com/Zielak/mifid-test#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-uglify": "^1.0.1"
+  }
 }
